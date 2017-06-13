@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var GREETINGS = [
-    'Hello', 'Bonjour', 'Hola', 'Hei', 'Hallo', 'こんにちは',
-  ' Здравствуйте', '你好', 'Merhaba', 'Χαίρετε', '안녕하세요'
-  ];
-  var TYPE_SPEED = 100;
-  var ERASE_SPEED = 125;
-  var CURSOR_SPEED = 400;
-  var ERASE_DELAY = 1600;
-  var RESTART_DELAY = 50;
+  var autogreeterSettings = {
+    greetings: [
+      'Hello', 'Bonjour', 'Hola', 'Hei', 'Hallo', 'こんにちは',
+    ' Здравствуйте', '你好', 'Merhaba', 'Χαίρετε', '안녕하세요'
+    ],
+    typeSpeed: 100,
+    eraseSpeed: 125,
+    cursorSpeed: 400,
+    eraseDelay: 1600,
+    restartDelay: 50,
+  }
+
   var unusedGreetingsList = resetGreetings();
   var greetBox = document.querySelector('.autogreeter-greeting');
   var cursorInterval;
@@ -29,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ** Resets the list of greetings when all greetings have been used.
   */
   function resetGreetings() {
-    return GREETINGS.slice();
+    return autogreeterSettings.greetings.slice();
   }
 
 
@@ -66,11 +69,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         cursorInterval = setInterval(function() {
           greetBox.classList.toggle('autogreeter-cursor');
-        }, CURSOR_SPEED);
+        }, autogreeterSettings.cursorSpeed);
 
-        setTimeout(typeDecision, ERASE_DELAY, true);
+        setTimeout(typeDecision, autogreeterSettings.eraseDelay, true);
       }
-    }, TYPE_SPEED);
+    }, autogreeterSettings.typeSpeed);
   }
 
 
@@ -86,9 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (greetBox.textContent.length === 0) {
         clearInterval(removeTypeInterval);
-        setTimeout(typeDecision, RESTART_DELAY, false);
+        setTimeout(typeDecision, autogreeterSettings.restartDelay, false);
       }
-    }, ERASE_SPEED);
+    }, autogreeterSettings.eraseSpeed);
   }
 
   typeDecision(false);
