@@ -1,5 +1,6 @@
 # autogreeter
 Types and erases greetings in various languages.
+[Click here for demo!](https://ncaron.github.io/autogreeter/)
 
 I've created this to add it to my portfolio's degign because I think it's important to show that I know JavaScript, not only frameworks. Feel free to use it!
 
